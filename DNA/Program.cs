@@ -19,26 +19,30 @@ namespace DNA
         {
             // init and create all the amino acid objects
             List<AminoAcid> acids = new List<AminoAcid>();
+            CreateAminoAcids(acids);
+
+            // convert enum into a string
+            string a = Data.Codon.AAG.ToString();
+            Console.WriteLine("DEMO DATA STRING: " + a + " ENUM: " + (int)Data.Codon.UUU + "\n");
+            acids[1].PrintAminoAcidInfo();
+
+            // collect and print data from all the acid objects
+            foreach(var acid in acids)
+            {
+                foreach(var codon in acid.Codon)
+                {
+                    Console.WriteLine(acid.Name + " " + codon + " " + acid.SingleLetterCode);
+                }
+            }
+        }
+
+        static void CreateAminoAcids(List<AminoAcid> acids)
+        {
             for (int i = 0; i < 20; i++)
             {
                 AminoAcid acid = new AminoAcid();
                 acid.InitAminoAcidInfo((AminoAcid.AminoAcidCode)i);
                 acids.Add(acid);
-
-                Console.WriteLine(i + " " + acid.Name + ": " + acid.SingleLetterCode);
-            }
-
-            // convert enum into a string
-            string a = Data.Codon.AAG.ToString();
-            Console.WriteLine(a + (int)Data.Codon.UUU);
-
-            // collect data from all the acid objects
-            foreach(var acid in acids)
-            {
-                foreach(var codon in acid.Codon)
-                {
-                    Console.WriteLine(acid.Name + ": " + codon);
-                }
             }
         }
     }

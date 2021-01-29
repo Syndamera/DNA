@@ -16,10 +16,16 @@ namespace DNA
 
         }
 
-        public void PrintInfo()
+        public void PrintAminoAcidInfo()
         {
             Console.WriteLine("Name: " + Name);
             Console.WriteLine("Code: " + SingleLetterCode);
+            Console.Write("Codons:");
+            foreach(var codon in Codon)
+            {
+                Console.Write(" " + codon);
+            }
+            Console.WriteLine("\n");
         }
 
         public void InitAminoAcidInfo(AminoAcidCode singleLetterCode)
