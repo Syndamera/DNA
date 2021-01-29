@@ -11,7 +11,6 @@ using System.Linq;
 // xxx xxx xx = start || x xxx xxx x = middle || xx xxx xxx = end
 // Check the 3s in the sequence and print out from start 3's, middle 3's and from the end 3's.
 
-
 namespace DNA
 {
     class Program
@@ -52,28 +51,72 @@ namespace DNA
                 // TODO: shift chars left and keep all but the remainders.
                 // then shift right and keep all but the remainders.
                 // lastly remove either the first or the last or both first & last chars.
-                Console.WriteLine("Not divadable by 3");
+                if(remainder == 2 || remainder == 1)
+                {
+                    // removes the two last characters - start frame
+                    string start = string.Empty;
+                    for (int i = 0; i < characters.Length - remainder; i++)
+                    {
+                        char c = characters[i];
+                        start += c.ToString();
+                    }
+                    Console.WriteLine("START FRAME:" + start);
+                    CompareData(acids, start.ToCharArray());
+
+                    // removes the first and the last character - middle frame
+                    // 8: (xxx xxx) xx - x (xxx xxx) x   - xx (xxx xxx)
+                    // 7: (xxx xxx) x  - x (xxx xxx)     - xx (xxx) xx
+                    // 6: (xxx xxx)    - x (xxx) xx      - xx (xxx) x
+                    string middle = string.Empty;
+                    for (int i = 1; i < characters.Length - (remainder - 1); i++)
+                    {
+                        char c = characters[i];
+                        middle += c.ToString();
+                    }
+                    Console.WriteLine("MIDDLE FRAME: " + middle);
+                    CompareData(acids, middle.ToCharArray());
+
+                    // removes the two last characters - end frame
+                    int temp = 0;
+                    if(remainder == 1)
+                    {
+                        temp = 2;
+                    }
+                    string end = string.Empty;
+                    for (int i = 2; i < characters.Length - temp; i++)
+                    {
+                        char c = characters[i];
+                        end += c.ToString();
+                    }
+                    Console.WriteLine("END FRAME: " + end);
+                    CompareData(acids, end.ToCharArray());
+                }
             }
             else
             {
-                // this only works on x^3
-                int arrayPos = 0;
-                string str = string.Empty;
-                while (arrayPos < characters.Length)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        char c = characters[i + arrayPos];
-                        str += c.ToString();
-                    }
-                    CompareDnaWithAminoAcids(acids, str);
-                    str = string.Empty;
-                    arrayPos += 3;
-                }
+                CompareData(acids, characters);
             }
 
             // collect and print data from all the acid objects
             //PrintAllAminoAcids(acids);
+        }
+
+        static void CompareData(List<AminoAcid> acids, char[] characters)
+        {
+            // this only works on x^3
+            int arrayPos = 0;
+            string str = string.Empty;
+            while (arrayPos < characters.Length)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    char c = characters[i + arrayPos];
+                    str += c.ToString();
+                }
+                CompareDnaWithAminoAcids(acids, str);
+                str = string.Empty;
+                arrayPos += 3;
+            }
         }
 
         static void CreateAminoAcids(List<AminoAcid> acids)

@@ -45,7 +45,6 @@ namespace DNA
                         Name = "Leucine";
                         Codon.Add(Data.Codon.UUA);
                         Codon.Add(Data.Codon.UUG);
-                        Codon.Add(Data.Codon.UUG);
                         Codon.Add(Data.Codon.CUU);
                         Codon.Add(Data.Codon.CUC);
                         Codon.Add(Data.Codon.CUA);
