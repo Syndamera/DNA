@@ -39,8 +39,9 @@ namespace DNA
             // loop the call until all the new strings are completed.
             //string input = "AUGCCCAUGAUAGCCUAA";
             Console.Write("Input DNA code: ");
-            string input = Console.ReadLine().ToUpper();
-            input = string.Concat(input.Where(c => !char.IsWhiteSpace(c)));
+            string inputConsole = Console.ReadLine().ToUpper();
+            inputConsole = string.Concat(inputConsole.Where(c => !char.IsWhiteSpace(c)));
+            string input = inputConsole.Replace("T", "U");
 
             char[] characters = new char[input.Length];
             characters = input.ToCharArray();
