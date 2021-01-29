@@ -7,93 +7,65 @@ namespace DNA
     class AminoAcid
     {
         public string Name;
-        public Data.Codon Codon;
-        public AminoAcidCode Code;
+        public List<Data.Codon> Codon = new List<Data.Codon>();
+        public AminoAcidCode SingleLetterCode;
+        public bool StartCodon = false;
 
         public AminoAcid()
         {
 
         }
 
-        public void PrintInfo(AminoAcid a)
+        public void PrintInfo()
         {
-            Console.WriteLine("Codon: " + a.Codon);
-            Console.WriteLine("Name: " + a.Name);
-            Console.WriteLine("Code: " + a.Code);
+            Console.WriteLine("Name: " + Name);
+            Console.WriteLine("Code: " + SingleLetterCode);
         }
 
-        public void GetAminoAcidInfo(Data.Codon b)
+        public void InitAminoAcidInfo(AminoAcidCode singleLetterCode)
         {
-            switch (b)
+            switch (singleLetterCode)
             {
-                case Data.Codon.UUU:
+                case AminoAcidCode.F:
                     {
                         Name = "Phenylalanine";
-                        Codon = Data.Codon.UUU;
-                        Code = AminoAcidCode.F;
+                        Codon.Add(Data.Codon.UUU);
+                        Codon.Add(Data.Codon.UUC);
+                        SingleLetterCode = AminoAcidCode.F;
                     }
                     break;
-                case Data.Codon.UUC:
-                    {
-                        Name = "Phenylalanine";
-                        Codon = Data.Codon.UUC;
-                        Code = AminoAcidCode.F;
-                    }
-                    break;
-                case Data.Codon.UUA:
+                case AminoAcidCode.L:
                     {
                         Name = "Leucine";
-                        Codon = Data.Codon.UUA;
-                        Code = AminoAcidCode.L;
+                        Codon.Add(Data.Codon.UUA);
+                        Codon.Add(Data.Codon.UUG);
+                        SingleLetterCode = AminoAcidCode.L;
                     }
                     break;
-                case Data.Codon.UUG:
-                    {
-                        Name = "Leucine";
-                        Codon = Data.Codon.UUG;
-                        Code = AminoAcidCode.L;
-                    }
-                    break;
-                case Data.Codon.UCU:
+                case AminoAcidCode.S:
                     {
                         Name = "Serine";
-                        Codon = Data.Codon.UCU;
-                        Code = AminoAcidCode.S;
+                        Codon.Add(Data.Codon.UCU);
+                        Codon.Add(Data.Codon.UCC);
+                        Codon.Add(Data.Codon.UCA);
+                        Codon.Add(Data.Codon.UCG);
+                        SingleLetterCode = AminoAcidCode.S;
                     }
                     break;
-                case Data.Codon.UCC:
-                    {
-                        Name = "Serine";
-                        Codon = Data.Codon.UCC;
-                        Code = AminoAcidCode.S;
-                    }
-                    break;
-                case Data.Codon.UCA:
-                    {
-                        Name = "Serine";
-                        Codon = Data.Codon.UCA;
-                        Code = AminoAcidCode.S;
-                    }
-                    break;
-                case Data.Codon.UCG:
-                    {
-                        Name = "Serine";
-                        Codon = Data.Codon.UCG;
-                        Code = AminoAcidCode.S;
-                    }
-                    break;
-                case Data.Codon.UAU:
+                case AminoAcidCode.Y:
                     {
                         Name = "Tyrosine";
-                        Codon = Data.Codon.UAU;
-                        Code = AminoAcidCode.Y;
+                        Codon.Add(Data.Codon.UAU);
+                        Codon.Add(Data.Codon.UAC);
+                        SingleLetterCode = AminoAcidCode.Y;
                     }
                     break;
-                case Data.Codon.UAC:
+                case AminoAcidCode.C:
                     {
-                        Name = "Tyrosine";
-                        Codon = Data.Codon.UAC;
-                        Code = AminoAcidCode.Y;
+                        Name = "Cysteine";
+                        Codon.Add(Data.Codon.UGU);
+                        Codon.Add(Data.Codon.UGC);
+                        SingleLetterCode = AminoAcidCode.C;
                     }
                     break;
             }
@@ -103,22 +75,23 @@ namespace DNA
         {
             F,
             L,
-            I,
-            V,
             S,
-            P,
-            T,
-            A,
             Y,
-            H,
-            Q,
-            N,
-            K,
-            D,
-            E,
             C,
             W,
+            P,
+            H,
+            Q,
             R,
+            I,
+            M,
+            T,
+            N,
+            K,
+            V,
+            A,
+            D,
+            E,
             G,
         }
     }

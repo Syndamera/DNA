@@ -17,15 +17,28 @@ namespace DNA
     {
         static void Main(string[] args)
         {
-            // create all the aminoacids and populate them in a array
-            AminoAcid[] acids = new AminoAcid[20];
-
+            // init and create all the amino acid objects
+            List<AminoAcid> acids = new List<AminoAcid>();
             for (int i = 0; i < 20; i++)
             {
-                int codonValue = i;
-                acids[i] = new AminoAcid();
-                acids[i].GetAminoAcidInfo((Data.Codon)codonValue);
-                Console.WriteLine(i + ": " + acids[i].Code);
+                AminoAcid acid = new AminoAcid();
+                acid.InitAminoAcidInfo((AminoAcid.AminoAcidCode)i);
+                acids.Add(acid);
+
+                Console.WriteLine(i + " " + acid.Name + ": " + acid.SingleLetterCode);
+            }
+
+            // convert enum into a string
+            string a = Data.Codon.AAG.ToString();
+            Console.WriteLine(a + (int)Data.Codon.UUU);
+
+            // collect data from all the acid objects
+            foreach(var acid in acids)
+            {
+                foreach(var codon in acid.Codon)
+                {
+                    Console.WriteLine(acid.Name + codon);
+                }
             }
         }
     }
