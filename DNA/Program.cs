@@ -22,15 +22,37 @@ namespace DNA
             CreateAminoAcids(acids);
 
             // convert enum into a string
-            string a = Data.Codon.AAG.ToString();
-            Console.WriteLine("DEMO DATA STRING: " + a + " ENUM: " + (int)Data.Codon.AAG + "\n");
+            //string a = Data.Codon.AAG.ToString();
+            //Console.WriteLine("DEMO DATA STRING: " + a + " ENUM: " + (int)Data.Codon.AAG + "\n");
 
             // prints out all the info for one amino acid
             //acids[1].PrintAminoAcidInfo();
 
             // testing comparing strings
-            string input = "CCC";
-            CompareDNAwithAminoAcids(acids, input);
+            //string input = "AUG";
+            //CompareDnaWithAminoAcids(acids, input);
+
+            // TODO: input % 3 and if remainder call a function to handle reading frames.
+            // if no remainder, remove whitespace in the string and copy each 3 chars
+            // into a new string and call CompareDnaWithAminoAcids()
+            // loop the call until all the new strings are completed.
+            string input = "AUGCCCAUGAUAGCCUAA";
+            char[] characters = new char[input.Length];
+            characters = input.ToCharArray();
+            int arrayPos = 0;
+            string str = string.Empty;
+            while(arrayPos < characters.Length)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    char c = characters[i + arrayPos];
+                    str += c.ToString();
+                }
+                CompareDnaWithAminoAcids(acids, str);
+                str = string.Empty;
+                arrayPos += 3;
+            }
+
 
             // collect and print data from all the acid objects
             //PrintAllAminoAcids(acids);
@@ -57,7 +79,7 @@ namespace DNA
             }
         }
 
-        static void CompareDNAwithAminoAcids(List<AminoAcid> acids, string input)
+        static void CompareDnaWithAminoAcids(List<AminoAcid> acids, string input)
         {
             // check for one of the stop codons
             if (input == Data.Codon.UAA.ToString() ||
