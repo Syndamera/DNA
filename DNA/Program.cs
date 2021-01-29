@@ -26,10 +26,10 @@ namespace DNA
             Console.WriteLine("DEMO DATA STRING: " + a + " ENUM: " + (int)Data.Codon.AAG + "\n");
 
             // prints out all the info for one amino acid
-            acids[1].PrintAminoAcidInfo();
+            //acids[1].PrintAminoAcidInfo();
 
             // testing comparing strings
-            string input = "CCC";
+            string input = "AUG";
             foreach(var acid in acids)
             {
                 foreach(var codon in acid.Codon)
@@ -38,18 +38,14 @@ namespace DNA
                     {
                         Console.WriteLine("MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
                         Console.WriteLine();
+                        // prints all the info of the matched amino acid
+                        acid.PrintAminoAcidInfo();
                     }
                 }
             }
 
             // collect and print data from all the acid objects
-            foreach(var acid in acids)
-            {
-                foreach(var codon in acid.Codon)
-                {
-                    Console.WriteLine(acid.Name + " " + codon + " " + acid.SingleLetterCode);
-                }
-            }
+            //PrintAllAminoAcids(acids);
         }
 
         static void CreateAminoAcids(List<AminoAcid> acids)
@@ -59,6 +55,17 @@ namespace DNA
                 AminoAcid acid = new AminoAcid();
                 acid.InitAminoAcidInfo((AminoAcid.AminoAcidCode)i);
                 acids.Add(acid);
+            }
+        }
+
+        static void PrintAllAminoAcids(List<AminoAcid> acids)
+        {
+            foreach (var acid in acids)
+            {
+                foreach (var codon in acid.Codon)
+                {
+                    Console.WriteLine(acid.Name + " " + codon + " " + acid.SingleLetterCode);
+                }
             }
         }
     }

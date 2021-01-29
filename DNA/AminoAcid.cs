@@ -19,8 +19,8 @@ namespace DNA
         public void PrintAminoAcidInfo()
         {
             Console.WriteLine("Name: " + Name);
-            Console.WriteLine("Code: " + SingleLetterCode);
-            Console.Write("Codons:");
+            Console.WriteLine("Single letter code: " + SingleLetterCode);
+            Console.Write("All codons:");
             foreach(var codon in Codon)
             {
                 Console.Write(" " + codon);
