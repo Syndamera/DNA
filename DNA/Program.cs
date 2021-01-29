@@ -23,8 +23,24 @@ namespace DNA
 
             // convert enum into a string
             string a = Data.Codon.AAG.ToString();
-            Console.WriteLine("DEMO DATA STRING: " + a + " ENUM: " + (int)Data.Codon.UUU + "\n");
+            Console.WriteLine("DEMO DATA STRING: " + a + " ENUM: " + (int)Data.Codon.AAG + "\n");
+
+            // prints out all the info for one amino acid
             acids[1].PrintAminoAcidInfo();
+
+            // testing comparing strings
+            string input = "CCC";
+            foreach(var acid in acids)
+            {
+                foreach(var codon in acid.Codon)
+                {
+                    if(input == codon.ToString())
+                    {
+                        Console.WriteLine("MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
+                        Console.WriteLine();
+                    }
+                }
+            }
 
             // collect and print data from all the acid objects
             foreach(var acid in acids)
