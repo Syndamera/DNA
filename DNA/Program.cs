@@ -36,8 +36,7 @@ namespace DNA
                 {
                     if(input == codon.ToString())
                     {
-                        Console.WriteLine("MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
-                        Console.WriteLine();
+                        Console.WriteLine("FOUND A MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
                         // prints all the info of the matched amino acid
                         acid.PrintAminoAcidInfo();
                     }
