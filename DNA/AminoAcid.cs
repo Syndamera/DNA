@@ -20,7 +20,7 @@ namespace DNA
         {
             Console.WriteLine("Name: " + Name);
             Console.WriteLine("Single letter code: " + SingleLetterCode);
-            Console.Write("All codons:");
+            Console.Write("All Codons:");
             foreach(var codon in Codon)
             {
                 Console.Write(" " + codon);
@@ -139,7 +139,6 @@ namespace DNA
                 case AminoAcidCode.M:
                     {
                         Name = "Methionine";
-                        Codon.Add(Data.Codon.AUA);
                         Codon.Add(Data.Codon.AUG);
                         SingleLetterCode = AminoAcidCode.M;
                         StartCodon = true;

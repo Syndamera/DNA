@@ -29,16 +29,31 @@ namespace DNA
             //acids[1].PrintAminoAcidInfo();
 
             // testing comparing strings
-            string input = "AUG";
-            foreach(var acid in acids)
+            string input = "CUU";
+
+            if (input == Data.Codon.UAA.ToString() ||
+                input == Data.Codon.UAG.ToString() ||
+                input == Data.Codon.UGA.ToString())
             {
-                foreach(var codon in acid.Codon)
+                Console.WriteLine("Stop Cordon");
+            }
+            else
+            {
+                foreach (var acid in acids)
                 {
-                    if(input == codon.ToString())
+                    foreach (var codon in acid.Codon)
                     {
-                        Console.WriteLine("FOUND A MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
-                        // prints all the info of the matched amino acid
-                        acid.PrintAminoAcidInfo();
+                        if (input == codon.ToString())
+                        {
+                            Console.WriteLine("FOUND A MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
+                            if (acid.StartCodon)
+                            {
+                                Console.WriteLine("Start Codon");
+                            }
+
+                            // prints all the info of the matched amino acid
+                            acid.PrintAminoAcidInfo();
+                        }
                     }
                 }
             }
