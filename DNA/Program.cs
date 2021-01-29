@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // ### APP DESCRIPTION ###
 // The user input a DNA sequence (A,G,C,T = U) - only accepts these characters.
@@ -36,23 +37,39 @@ namespace DNA
             // if no remainder, remove whitespace in the string and copy each 3 chars
             // into a new string and call CompareDnaWithAminoAcids()
             // loop the call until all the new strings are completed.
-            string input = "AUGCCCAUGAUAGCCUAA";
+            //string input = "AUGCCCAUGAUAGCCUAA";
+            Console.Write("Input DNA code: ");
+            string input = Console.ReadLine().ToUpper();
+            input = string.Concat(input.Where(c => !char.IsWhiteSpace(c)));
+
             char[] characters = new char[input.Length];
             characters = input.ToCharArray();
-            int arrayPos = 0;
-            string str = string.Empty;
-            while(arrayPos < characters.Length)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    char c = characters[i + arrayPos];
-                    str += c.ToString();
-                }
-                CompareDnaWithAminoAcids(acids, str);
-                str = string.Empty;
-                arrayPos += 3;
-            }
 
+            int remainder = characters.Length % 3;
+            if (remainder != 0)
+            {
+                // TODO: shift chars left and keep all but the remainders.
+                // then shift right and keep all but the remainders.
+                // lastly remove either the first or the last or both first & last chars.
+                Console.WriteLine("Not divadable by 3");
+            }
+            else
+            {
+                // this only works on x^3
+                int arrayPos = 0;
+                string str = string.Empty;
+                while (arrayPos < characters.Length)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        char c = characters[i + arrayPos];
+                        str += c.ToString();
+                    }
+                    CompareDnaWithAminoAcids(acids, str);
+                    str = string.Empty;
+                    arrayPos += 3;
+                }
+            }
 
             // collect and print data from all the acid objects
             //PrintAllAminoAcids(acids);
