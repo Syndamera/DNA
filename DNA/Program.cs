@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // ### APP DESCRIPTION ###
 // The user input a DNA sequence (A,G,C,T) - only accepts these characters.
@@ -14,22 +15,102 @@ namespace DNA
 {
     class Program
     {
-        struct AminoAcid
+        class AminoAcid
         {
-            AminoAcidTable ID;
-            string code;
+            public string Name;
+            public Codon Base;
+            public AminoAcidCode Code;
+
+
+            public void PrintInfo(AminoAcid a)
+            {
+                Console.WriteLine("Codon: " + a.Base);
+                Console.WriteLine("Name: " + a.Name);
+                Console.WriteLine("Code: " + a.Code);
+            }
+
+            public void GetAminoAcidInfo(Codon b)
+            {
+                switch(b)
+                {
+                    case Codon.UUU:
+                        {
+                            Name = "Phenylalanine";
+                            Base = Codon.UUU;
+                            Code = AminoAcidCode.F;
+                        } break;
+                    case Codon.UUC:
+                        {
+                            Name = "Phenylalanine";
+                            Base = Codon.UUC;
+                            Code = AminoAcidCode.F;
+                        }
+                        break;
+                    case Codon.UUA:
+                        {
+                            Name = "Leucine";
+                            Base = Codon.UUA;
+                            Code = AminoAcidCode.L;
+                        }
+                        break;
+                    case Codon.UUG:
+                        {
+                            Name = "Leucine";
+                            Base = Codon.UUG;
+                            Code = AminoAcidCode.L;
+                        }
+                        break;
+
+                } 
+            }
         }
-        enum AminoAcidTable
+        enum Codon
         {
             UUU,
             UUC,
             UUA,
             UUG
         }
-        
+        enum AminoAcidCode
+        {
+            F,
+            L,
+            I,
+            V,
+            S,
+            P,
+            T,
+            A,
+            Y,
+            Stop,
+            H,
+            Q,
+            N,
+            K,
+            D,
+            E,
+            C,
+            W,
+            R,
+            G
+        }
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            List<string> aminoAcids = new List<string>();
+
+            for (int i = 0; i < aminoAcids.Count; i++)
+            {
+
+            }
+
+            AminoAcid a = new AminoAcid();
+            a.GetAminoAcidInfo(Codon.UUU);
+            AminoAcid b = new AminoAcid();
+            b.GetAminoAcidInfo(Codon.UUG);
+            a.PrintInfo(a);
+            b.PrintInfo(b);
         }
+
     }
 }

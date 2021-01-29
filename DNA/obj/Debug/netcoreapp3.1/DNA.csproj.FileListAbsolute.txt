@@ -1,0 +1,13 @@
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.csprojAssemblyReference.cache
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.AssemblyInfoInputs.cache
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.AssemblyInfo.cs
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.csproj.CoreCompileInputs.cache
+C:\Users\rockt\source\repos\DNA\DNA\bin\Debug\netcoreapp3.1\DNA.exe
+C:\Users\rockt\source\repos\DNA\DNA\bin\Debug\netcoreapp3.1\DNA.deps.json
+C:\Users\rockt\source\repos\DNA\DNA\bin\Debug\netcoreapp3.1\DNA.runtimeconfig.json
+C:\Users\rockt\source\repos\DNA\DNA\bin\Debug\netcoreapp3.1\DNA.runtimeconfig.dev.json
+C:\Users\rockt\source\repos\DNA\DNA\bin\Debug\netcoreapp3.1\DNA.dll
+C:\Users\rockt\source\repos\DNA\DNA\bin\Debug\netcoreapp3.1\DNA.pdb
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.dll
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.pdb
+C:\Users\rockt\source\repos\DNA\DNA\obj\Debug\netcoreapp3.1\DNA.genruntimeconfig.cache
