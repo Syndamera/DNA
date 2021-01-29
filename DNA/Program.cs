@@ -29,34 +29,8 @@ namespace DNA
             //acids[1].PrintAminoAcidInfo();
 
             // testing comparing strings
-            string input = "CUU";
-
-            if (input == Data.Codon.UAA.ToString() ||
-                input == Data.Codon.UAG.ToString() ||
-                input == Data.Codon.UGA.ToString())
-            {
-                Console.WriteLine("Stop Cordon");
-            }
-            else
-            {
-                foreach (var acid in acids)
-                {
-                    foreach (var codon in acid.Codon)
-                    {
-                        if (input == codon.ToString())
-                        {
-                            Console.WriteLine("FOUND A MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
-                            if (acid.StartCodon)
-                            {
-                                Console.WriteLine("Start Codon");
-                            }
-
-                            // prints all the info of the matched amino acid
-                            acid.PrintAminoAcidInfo();
-                        }
-                    }
-                }
-            }
+            string input = "CCC";
+            CompareDNAwithAminoAcids(acids, input);
 
             // collect and print data from all the acid objects
             //PrintAllAminoAcids(acids);
@@ -79,6 +53,37 @@ namespace DNA
                 foreach (var codon in acid.Codon)
                 {
                     Console.WriteLine(acid.Name + " " + codon + " " + acid.SingleLetterCode);
+                }
+            }
+        }
+
+        static void CompareDNAwithAminoAcids(List<AminoAcid> acids, string input)
+        {
+            // check for one of the stop codons
+            if (input == Data.Codon.UAA.ToString() ||
+                input == Data.Codon.UAG.ToString() ||
+                input == Data.Codon.UGA.ToString())
+            {
+                Console.WriteLine("Stop Codon with " + input);
+            }
+            else
+            {
+                foreach (var acid in acids)
+                {
+                    foreach (var codon in acid.Codon)
+                    {
+                        if (input == codon.ToString())
+                        {
+                            Console.WriteLine("FOUND A MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
+                            if (acid.StartCodon)
+                            {
+                                Console.WriteLine("Start Codon");
+                            }
+
+                            // prints all the info of the matched amino acid
+                            acid.PrintAminoAcidInfo();
+                        }
+                    }
                 }
             }
         }
