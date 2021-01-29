@@ -37,7 +37,7 @@ namespace DNA
             {
                 foreach(var codon in acid.Codon)
                 {
-                    Console.WriteLine(acid.Name + codon);
+                    Console.WriteLine(acid.Name + ": " + codon);
                 }
             }
         }
