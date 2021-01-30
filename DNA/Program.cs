@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 // ### APP DESCRIPTION ###
+// TASK #1:
 // The user input a DNA sequence (A,G,C,T = U) - only accepts these characters.
 // Translate DNA sequence to Amino Acid - Match a sequence of 3 to corresponding Amino Acid
 // Lookup: Amino Acid Table > ENUM
@@ -10,6 +11,24 @@ using System.Linq;
 // This below is called reading frame. Only applies if we have a remainder from the DNA sequence.
 // xxx xxx xx = start || x xxx xxx x = middle || xx xxx xxx = end
 // Check the 3s in the sequence and print out from start 3's, middle 3's and from the end 3's.
+
+// TASK #2:
+// <extra> GC content >> % of bases that are either G or C from the input.
+// Identify the start Codon and that determines the reading frame >> we will start the reading from this DNA code.
+//    AAAGGGAUGCCAUGGAAAAUGUAAAAAGGGCCCUAAAUGCCCUAAUUUAA 
+// 1:            <M><x><x><x><x><x><x><x><x><x><x><x><!> 
+// 2: <skip><M><x><x><x><M><!>   <skip>                  
+// 3: <skip>            <M><!>   <skip>                  
+// 4:                                     <M><x><!><skip>
+// Print out the correct amino acids
+// >Sequence 1
+// Mxxxxxxxxxxx
+// >Sequence 2
+// MxxxM
+// >Sequence 3
+// M
+// >Sequence 4
+// Mx
 
 namespace DNA
 {
@@ -32,11 +51,6 @@ namespace DNA
             //string input = "AUG";
             //CompareDnaWithAminoAcids(acids, input);
 
-            // TODO: input % 3 and if remainder call a function to handle reading frames.
-            // if no remainder, remove whitespace in the string and copy each 3 chars
-            // into a new string and call CompareDnaWithAminoAcids()
-            // loop the call until all the new strings are completed.
-            //string input = "AUGCCCAUGAUAGCCUAA";
             Console.Write("Input DNA code: ");
             string inputConsole = Console.ReadLine().ToUpper();
             inputConsole = string.Concat(inputConsole.Where(c => !char.IsWhiteSpace(c)));
@@ -66,7 +80,7 @@ namespace DNA
                     // removes the first and the last character - middle frame
                     // 8: (xxx xxx) xx - x (xxx xxx) x   - xx (xxx xxx)
                     // 7: (xxx xxx) x  - x (xxx xxx)     - xx (xxx) xx
-                    // 6: (xxx xxx)    - x (xxx) xx      - xx (xxx) x
+                    
                     string middle = string.Empty;
                     for (int i = 1; i < characters.Length - (remainder - 1); i++)
                     {
@@ -94,9 +108,11 @@ namespace DNA
             }
             else
             {
+                // TODO: 6: (xxx xxx)    - x (xxx) xx      - xx (xxx) x >> should be 3 different readins from x^3
+                // TODO: Display all the readings as single line, single letter code.
                 CompareData(acids, characters);
             }
-
+            
             // collect and print data from all the acid objects
             //PrintAllAminoAcids(acids);
         }
