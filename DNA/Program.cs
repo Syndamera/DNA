@@ -48,7 +48,6 @@ namespace DNA
             char[] characters = new char[input.Length];
             characters = input.ToCharArray();
             ReadingFramesAndOutputSequence(acids, characters, input);
-            
         }
 
         static void ReadingFramesAndOutputSequence(List<AminoAcid> acids, char[] characters, string input)
@@ -61,6 +60,8 @@ namespace DNA
                 // 7: (xxx xxx) x  - x (xxx xxx)     - xx (xxx) xx
                 if (remainder == 2 || remainder == 1)
                 {
+                    // 8: (xxx xxx) xx
+                    // 7: (xxx xxx) x
                     // removes the two last characters - start frame for 7-8 characters
                     string start = string.Empty;
                     for (int i = 0; i < characters.Length - remainder; i++)
@@ -71,7 +72,8 @@ namespace DNA
                     Console.Write("Sequence 1: ");
                     CompareData(acids, start.ToCharArray());
                     Console.WriteLine();
-
+                    // 8: x (xxx xxx) x
+                    // 7: x (xxx xxx)
                     // removes the first and the last character - middle frame for 7-8 characters
                     string middle = string.Empty;
                     for (int i = 1; i < characters.Length - (remainder - 1); i++)
@@ -88,6 +90,8 @@ namespace DNA
                     {
                         temp = 2;
                     }
+                    // 8: xx (xxx xxx)
+                    // 7: xx (xxx) xx - uses temp variable
                     // removes the two first characters and removes the 2 last for 7 characters - end frame
                     string end = string.Empty;
                     for (int i = 2; i < characters.Length - temp; i++)
@@ -102,8 +106,8 @@ namespace DNA
             }
             else
             {
-                // TODO: 6: (xxx xxx)    - x (xxx) xx      - xx (xxx) x >> should be 3 different readins from x^3
-                // TODO: Display all the readings as single line, single letter code.
+                // 6: (xxx xxx)    - x (xxx) xx      - xx (xxx) x >> should be 3 different readins from x^3
+                // Display all the readings as single line, single letter code.
                 // first reading frame (xxx xxx)
                 if (characters.Length > 2)
                 {
@@ -143,6 +147,7 @@ namespace DNA
         static void CompareData(List<AminoAcid> acids, char[] characters)
         {
             // this only works on x^3
+            // compares 3 characters at a time against a Codon.
             int arrayPos = 0;
             string str = string.Empty;
             while (arrayPos < characters.Length)
