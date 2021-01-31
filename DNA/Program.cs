@@ -47,7 +47,12 @@ namespace DNA
 
             char[] characters = new char[input.Length];
             characters = input.ToCharArray();
+            ReadingFramesAndOutputSequence(acids, characters, input);
+            
+        }
 
+        static void ReadingFramesAndOutputSequence(List<AminoAcid> acids, char[] characters, string input)
+        {
             int remainder = characters.Length % 3;
             if (remainder != 0 && characters.Length > 2)
             {
@@ -79,7 +84,7 @@ namespace DNA
                     Console.WriteLine();
 
                     int temp = 0;
-                    if(remainder == 1)
+                    if (remainder == 1)
                     {
                         temp = 2;
                     }
@@ -100,9 +105,8 @@ namespace DNA
                 // TODO: 6: (xxx xxx)    - x (xxx) xx      - xx (xxx) x >> should be 3 different readins from x^3
                 // TODO: Display all the readings as single line, single letter code.
                 // first reading frame (xxx xxx)
-                if(characters.Length > 2)
+                if (characters.Length > 2)
                 {
-                    Console.WriteLine("1nd FRAME:" + input.ToString());
                     Console.Write("Sequence 1: ");
                     CompareData(acids, characters);
                     Console.WriteLine();
@@ -114,7 +118,6 @@ namespace DNA
                         char c = characters[i];
                         second += c.ToString();
                     }
-                    Console.WriteLine("2nd FRAME:" + second.ToString());
                     Console.Write("Sequence 2: ");
                     CompareData(acids, second.ToCharArray());
                     Console.WriteLine();
@@ -126,7 +129,6 @@ namespace DNA
                         char c = characters[i];
                         third += c.ToString();
                     }
-                    Console.WriteLine("3nd FRAME:" + third.ToString());
                     Console.Write("Sequence 3: ");
                     CompareData(acids, third.ToCharArray());
                     Console.WriteLine();
@@ -166,25 +168,14 @@ namespace DNA
             }
         }
 
-        static void PrintAllAminoAcids(List<AminoAcid> acids)
-        {
-            foreach (var acid in acids)
-            {
-                foreach (var codon in acid.Codon)
-                {
-                    Console.WriteLine(acid.Name + " " + codon + " " + acid.SingleLetterCode);
-                }
-            }
-        }
-
-        static void CompareDnaWithAminoAcids(List<AminoAcid> acids, string input)
+        static void CompareDnaWithAminoAcids(List<AminoAcid> acids, string str)
         {
             // check for one of the stop codons
-            if (input == Data.Codon.UAA.ToString() ||
-                input == Data.Codon.UAG.ToString() ||
-                input == Data.Codon.UGA.ToString())
+            if (str == Data.Codon.UAA.ToString() ||
+                str == Data.Codon.UAG.ToString() ||
+                str == Data.Codon.UGA.ToString())
             {
-                Console.WriteLine("Stop Codon with " + input);
+                Console.WriteLine("Stop Codon with " + str);
             }
             else
             {
@@ -192,9 +183,10 @@ namespace DNA
                 {
                     foreach (var codon in acid.Codon)
                     {
-                        if (input == codon.ToString())
+                        if (str == codon.ToString())
                         {
                             //Console.WriteLine("FOUND A MATCH: " + input + " " + acid.Name + " " + acid.SingleLetterCode);
+                            // TODO: Save the result and return the SingleLetterCode?
                             Console.Write(acid.SingleLetterCode);
                             if (acid.StartCodon)
                             {

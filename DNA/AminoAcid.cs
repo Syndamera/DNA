@@ -28,6 +28,17 @@ namespace DNA
             Console.WriteLine("\n");
         }
 
+        public void PrintAllAminoAcids(List<AminoAcid> acids)
+        {
+            foreach (var acid in acids)
+            {
+                foreach (var codon in acid.Codon)
+                {
+                    Console.WriteLine(acid.Name + " " + codon + " " + acid.SingleLetterCode);
+                }
+            }
+        }
+
         public void InitAminoAcidInfo(AminoAcidCode singleLetterCode)
         {
             switch (singleLetterCode)
